@@ -21,7 +21,11 @@ const RECIPES: Recipe[] = [
 @Injectable()
 export class RecipeService {
   async create(recipeDto: CreateRecipeDTO) {
-    RECIPES.push(recipeDto);
+    const recipe: Recipe = null;
+    for (let key in recipeDto) {
+      recipe[key] = recipeDto[key];
+    }
+    RECIPES.push(recipe);
     return { message: 'Recipe created' };
   }
 
@@ -33,8 +37,8 @@ export class RecipeService {
     return RECIPES[id];
   }
 
-  async update(recipeDto: CreateRecipeDTO) {
-    const recipe = await Promise.resolve(RECIPES[recipeDto.id]);
+  async update(id: string, recipeDto: CreateRecipeDTO) {
+    const recipe = await Promise.resolve(RECIPES[id]);
     for (let key in recipeDto) {
       recipe[key] = recipeDto[key];
     }
