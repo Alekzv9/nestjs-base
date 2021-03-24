@@ -21,10 +21,7 @@ const RECIPES: Recipe[] = [
 @Injectable()
 export class RecipeService {
   async create(recipeDto: CreateRecipeDTO) {
-    const recipe: Recipe = null;
-    for (let key in recipeDto) {
-      recipe[key] = recipeDto[key];
-    }
+    const recipe: Recipe = { id: 'fqwe', ...recipeDto };
     RECIPES.push(recipe);
     return { message: 'Recipe created' };
   }
