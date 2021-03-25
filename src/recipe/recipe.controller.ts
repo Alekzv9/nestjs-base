@@ -13,6 +13,7 @@ export class RecipeController {
 
   @Get()
   async findAll() {
-    return await this.recipeService.findAll();
+    const recipes = await this.recipeService.findAll();
+    return recipes;
   }
 }
