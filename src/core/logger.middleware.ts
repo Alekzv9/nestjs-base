@@ -34,10 +34,9 @@ export class LoggerMiddleware implements NestMiddleware {
       clientProxy = 'none';
     }
     const pathname = req.url;
-    if (pathname != '/favicon.ico') {
-      console.log('req for ' + pathname);
-      console.log('Client : ' + req.headers['user-agent']);
-      console.log('IP address ' + clientIPaddr + ' via proxy ' + clientProxy);
-    }
+
+    console.log(
+      `Request  for: ${pathname} - Client: ${req.headers['user-agent']} - IP address ${clientIPaddr} via proxy ${clientProxy}`,
+    );
   }
 }
