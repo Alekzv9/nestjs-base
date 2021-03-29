@@ -1,7 +1,11 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import { AuthGuard } from 'src/auth/auth.guard';
+import { UserData } from 'src/core/user-data.decorator';
 import { CreateRecipeDTO } from 'src/dto/create-recipe.dto';
+import { User } from 'src/interfaces/user';
 import { RecipeService } from './recipe.service';
 
+@UseGuards(AuthGuard)
 @Controller('recipe')
 export class RecipeController {
   constructor(private readonly recipeService: RecipeService) {}
@@ -12,7 +16,8 @@ export class RecipeController {
   }
 
   @Get()
-  async findAll() {
+  async findAll(@UserData() user: User) {
+    console.log(user);
     const recipes = await this.recipeService.findAll();
     return recipes;
   }
