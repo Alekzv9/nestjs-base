@@ -22,7 +22,7 @@ export class AuthService {
 
   private async createToken(user: User): Promise<Login> {
     try {
-      const token = sign(null, 'TH3:Pr1v$t·Key', {
+      const token = sign(user, 'TH3:Pr1v$t·Key', {
         expiresIn: '1h',
       });
       const refreshToken = sign(user, 'TH3:Pr1v$t·Key', {
